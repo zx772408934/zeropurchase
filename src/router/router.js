@@ -1,19 +1,22 @@
 import React from 'react'
 import Home from '../Home/Home'
 import About from '../About/About'
-import Other from '../About/Other/Other'
-import { BrowserRouter as Router ,Route } from 'react-router-dom'
+import { BrowserRouter ,Route ,Redirect ,Switch} from 'react-router-dom'
+import RouteGuard from "./RouteGuard"
 
 function router (){
+    //Redirect一定要放在Switch的最后一个
     return(
-        <Router>
-            <Route path="/home" component={Home}></Route>
-            <Route path="/about" render={()=>(
-                <About>
-                    <Route path="/about/other" component={Other}></Route>
-                </About>
-            )}></Route>
-        </Router>
+        <BrowserRouter>
+           <Switch>
+                <Route path="/" exact render={()=>(<Redirect to="/home"></Redirect>)}></Route>
+                {/* <RouteGuard path="/" component={Home} exact={true}></RouteGuard> */}
+                <RouteGuard path="/home" component={Home}></RouteGuard>
+                <RouteGuard path="/about" component={About} permissions={false}></RouteGuard>
+                {/* <RouteGuard path="/*" component={Home}></RouteGuard> */}
+                <Redirect from="/*" to="/home" />
+           </Switch>
+        </BrowserRouter>
     );
 }
 export default router;
