@@ -1,5 +1,8 @@
 import React from 'react';
+//引入路由配置
 import Router from './router/router'
+//引入antd-mobile CSS
+import 'antd-mobile/dist/antd-mobile.css'
 
 // import {HashRouter , Route , Link , NavLink} from 'react-router-dom'
 function App(props){
