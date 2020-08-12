@@ -1,4 +1,6 @@
 import { Toast } from 'antd-mobile';
+import {createBrowserHistory} from 'history'
+const history = createBrowserHistory();
 const httpRequest = {
     /*
     method 请求方式 String
@@ -29,12 +31,32 @@ const httpRequest = {
                 failCallBack();
             }).then( json => {
                 //这个时候才拿到了真正的数据
-                console.log('成功');
-                successCallBack();
+                if(json.code===1005104101||json.code===1005104100){
+                    Toast.info('登录过期', 1.5 , null ,false);
+                    localStorage.removeItem('token');
+                    setTimeout(()=>{
+                        history.push('./about');
+                    },1500);
+                  }
+                  else if(json.code===200){
+                    successCallBack(json);
+                  }
+                  else if (json.code === 1005104110){
+                    //已结束
+                    successCallBack(json);
+                  }
+                  else if (json.code === 1005104121){
+                    //未开始
+                    successCallBack(json);
+                  }
+                  else{ 
+                    Toast.info(json.msg, 2 , null ,false);
+                    successCallBack(json);
+                  }
             }, err=> {
                 //接口调取失败
                 Toast.info('请求失败', 2 , null ,false);
-                failCallBack();
+                failCallBack(err);
             });
         }
         else if (method==='get'){
