@@ -12,6 +12,8 @@ function router (props){
         <BrowserRouter>
            <Switch>
                 <Route path="/" exact render={()=>(<Redirect to="/home"></Redirect>)}></Route>
+                {/* <Route path="/home" component={Home}></Route> */}
+                {/* <Route path="/about" component={About}></Route> */}
                 {/* <RouteGuard path="/" component={Home} exact={true}></RouteGuard> */}
                 <RouteGuard path="/home" component={Home}></RouteGuard>
                 <RouteGuard path="/about" component={About}></RouteGuard>

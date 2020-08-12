@@ -1,8 +1,12 @@
 import React from 'react';
 //引入路由配置
-import Router from './router/router'
+// import Router from './router/router'
 //引入antd-mobile CSS
 import 'antd-mobile/dist/antd-mobile.css'
+
+import Home from './Home/Home'
+import About from './About/About'
+import { HashRouter ,Route ,Redirect ,Switch} from 'react-router-dom'
 
 // import {HashRouter , Route , Link , NavLink} from 'react-router-dom'
 class App extends React.Component{
@@ -15,11 +19,16 @@ class App extends React.Component{
   }
   render(){
     return(
-      <div className='App'>
-        <div className="nav">这是导航</div>
-        <Router></Router>
-        <div className="footer">这是结尾</div>
-      </div>
+      // <div className='App'>
+        <HashRouter>
+           {/* <Switch> */}
+                <Route path="/" exact render={()=>(<Redirect to="/home"></Redirect>)}></Route>
+                <Route path="/home" component={Home}></Route>
+                <Route path="/about" component={About}></Route>
+                <Redirect from="/*" to="/home" />
+           {/* </Switch> */}
+        </HashRouter>
+      // </div>
     );
   }
 }

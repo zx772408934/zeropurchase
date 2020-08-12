@@ -1,9 +1,9 @@
 import React from 'react';
 // import {withRouter} from 'react-router-dom'
 class About extends React.Component{
-    // constructor(props){
-    //     super(props);
-    // }
+    constructor(props){
+        super(props);
+    }
     componentDidMount(){
         console.log(this.props.location)
     }

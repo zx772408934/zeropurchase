@@ -3,6 +3,8 @@ import { Route , Redirect } from 'react-router-dom'
 
 function Guard (props){
 
+    // console.log(props)
+
     //初始化参数
     const path = props.path;
     const Component = props.component;

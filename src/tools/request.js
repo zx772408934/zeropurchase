@@ -1,6 +1,6 @@
 import { Toast } from 'antd-mobile';
-import {createBrowserHistory} from 'history'
-const history = createBrowserHistory();
+import {createHashHistory} from 'history'
+const history = createHashHistory();
 const httpRequest = {
     /*
     method 请求方式 String
@@ -35,7 +35,7 @@ const httpRequest = {
                     Toast.info('登录过期', 1.5 , null ,false);
                     localStorage.removeItem('token');
                     setTimeout(()=>{
-                        history.push('./about');
+                        history.push('/about?id=1');
                     },1500);
                   }
                   else if(json.code===200){

@@ -5,8 +5,11 @@ export default class Home extends Component{
     //     super(props);
     // }
 
+    
     componentDidMount(){
        
+        console.log(this.props)
+
         $request.fetchRequest('post','putView',{
             token:'1223',
             id:'3333'
