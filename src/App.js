@@ -5,14 +5,23 @@ import Router from './router/router'
 import 'antd-mobile/dist/antd-mobile.css'
 
 // import {HashRouter , Route , Link , NavLink} from 'react-router-dom'
-function App(props){
+class App extends React.Component{
 
-  return(
-    <div className='App'>
-      <div className="nav">这是导航</div>
-      <Router></Router>
-      <div className="footer">这是结尾</div>
-    </div>
-  );
+
+  componentDidMount(){
+     //自适应
+     document.getElementsByTagName('html')[0].style.fontSize = document.getElementsByTagName('html')[0].offsetWidth /
+     7.50 + 'px';
+  }
+  render(){
+    return(
+      <div className='App'>
+        <div className="nav">这是导航</div>
+        <Router></Router>
+        <div className="footer">这是结尾</div>
+      </div>
+    );
+  }
 }
+
 export default App;

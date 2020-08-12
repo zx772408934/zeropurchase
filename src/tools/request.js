@@ -39,7 +39,7 @@ const httpRequest = {
         }
         else if (method==='get'){
 
-            // let arr = Array.from(params);    //返回一个对象的属性值组成的数组,浅拷贝
+            // let arr = Array.from(params);    //返回一个可迭代对象的属性值或者一个伪数组的值组成的数组,浅拷贝
             // console.log(arr)
 
             let urlAdd = this.httpUrl.apiUrl+url;
@@ -52,7 +52,7 @@ const httpRequest = {
             
             for(let i = 0;i<lengthArr;i++){
 
-                if(urlAdd.indexOf('?')==-1){
+                if(urlAdd.indexOf('?')===-1){
                     urlAdd += "?";
                 }
 
