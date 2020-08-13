@@ -1,8 +1,8 @@
 import React from 'react'
-import Home from '../Home/Home'
-import About from '../About/About'
 import { BrowserRouter ,Route ,Redirect ,Switch} from 'react-router-dom'
 import RouteGuard from "./RouteGuard"
+import Index from '../pages/index/index'
+import Login from "../pages/index/login/login"
 // import {createBrowserHistory} from 'history'
 // const history = createBrowserHistory();
 
@@ -11,14 +11,11 @@ function router (props){
     return(
         <BrowserRouter>
            <Switch>
-                <Route path="/" exact render={()=>(<Redirect to="/home"></Redirect>)}></Route>
-                {/* <Route path="/home" component={Home}></Route> */}
-                {/* <Route path="/about" component={About}></Route> */}
                 {/* <RouteGuard path="/" component={Home} exact={true}></RouteGuard> */}
-                <RouteGuard path="/home" component={Home}></RouteGuard>
-                <RouteGuard path="/about" component={About}></RouteGuard>
-                {/* <RouteGuard path="/*" component={Home}></RouteGuard> */}
-                <Redirect from="/*" to="/home" />
+                <Route path="/" exact render={()=>(<Redirect to="/Index"></Redirect>)}></Route>
+                <RouteGuard path="/Index" component={Index}></RouteGuard>
+                <RouteGuard path="/Login" component={Login}></RouteGuard>
+                <Redirect from="/*" to="/Index" />
            </Switch>
         </BrowserRouter>
     );
