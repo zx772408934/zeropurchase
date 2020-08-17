@@ -111,6 +111,7 @@ class Login extends React.Component{
         },err=>{
 
         });
+       
     }
     //注册/登录
     sub(){
@@ -192,7 +193,7 @@ class Login extends React.Component{
                     <i className={`iconfont left ${ this.state.isChecked ?"active":"uActive"}`} onClick={()=>{this.setState({isChecked:!this.state.isChecked})}}>&#xe613;</i>
                     <div className="right">我已阅读并同意<span>《注册协议》</span></div>
                     </div>
-                    <div className="sub"onClick={this.sub}>注册登录</div>
+                    <div className="sub" onClick={this.sub}>注册登录</div>
                 </div>
             </div>
         )

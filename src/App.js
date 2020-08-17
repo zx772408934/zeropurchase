@@ -9,7 +9,7 @@ import 'antd-mobile/dist/antd-mobile.css'
 function getRequest() {
   var url = decodeURIComponent(window.location.href);
   var theRequest = new Object();
-  if (url.indexOf("?") != -1) {
+  if (url.indexOf("?") !== -1) {
     var str = url.split('?')[1];
     let strs = str.split("&");
     for (var i = 0; i < strs.length; i++) {
