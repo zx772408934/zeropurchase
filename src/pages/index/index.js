@@ -1,21 +1,47 @@
 import React from "react"
 import $request from "../../tools/request"
+import Loading from "../../components/loading/loading"
+import { Toast } from "antd-mobile"
 class Index extends React.Component{
     constructor(props){
         super(props);
+        this.state = {
+            isShow:false,
+            indexInfo:{}
+        };
+        this.getIndexInfo = this.getIndexInfo.bind(this);
     }
     componentDidMount(){
-        
+        this.getIndexInfo();
     }
     getIndexInfo(){
-        // $request.fetchRequest("post",)
+        Toast.loading('loading...',0,null,false);
+        $request.fetchRequest("post","getIndexInfo",{
+            token: localStorage.getItem('token') ? localStorage.getItem('token') : '',
+            id: 208
+        },res=>{
+            Toast.hide();
+            this.setState({
+                isShow:true,
+                indexInfo:res.data
+            });
+        },err=>{
+
+        });
     }
     render(){
-        return(
-            <div className="index">
-               22222
-            </div>
-        );
+        return
+            (
+                {
+                    this.state.isShow
+                    ?
+                    <div className="index">
+                        <img alt='bg' src={require(this.state.indexInfo.home_img)}></img>
+                    </div>
+                    :
+                    <Loading></Loading>
+                }
+            );
     }
 }
 export default Index;

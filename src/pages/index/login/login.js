@@ -9,21 +9,23 @@ function Input(props) {
 }
 
 class Login extends React.Component{
-    // constructor(props){
-    //     super(props);
-    //     this.state = {
-    //         phone:'',
-    //         phoneTips:'',
-    //         code:'',
-    //         codeTips:'',
-    //         codeInfo:'获取验证码',
-    //         isChecked:true
-    //     }
-    //     this.isAllowGetCode = true;
-    //     this.codeInfoInterval = null;
-    //     this.handlePhoneChange = this.handlePhoneChange.bind(this);
-    //     this.handleCodeChange = this.handleCodeChange.bind(this);
-    // }
+    constructor(props){
+        super(props);
+        this.state = {
+            phone:'',
+            phoneTips:'',
+            code:'',
+            codeTips:'',
+            codeInfo:'获取验证码',
+            isChecked:true
+        }
+        this.isAllowGetCode = true;
+        this.codeInfoInterval = null;
+        this.handlePhoneChange = this.handlePhoneChange.bind(this);
+        this.handleCodeChange = this.handleCodeChange.bind(this);
+        this.getCode = this.getCode.bind(this);
+        this.sub = this.sub.bind(this);
+    }
    
     componentDidMount(){
         console.log(this)
@@ -108,6 +110,24 @@ class Login extends React.Component{
         },err=>{
 
         });
+       
+    }
+     //注册/登录
+     sub(){
+        Toast.loading( 'Loading...' , 0 , null , true );
+        $request.fetchRequest("post","userLogin",{
+            act_id: localStorage.getItem('actId'),
+            phone:this.state.phone,
+            code:this.state.code
+        },res=>{
+            if(res.code===200){
+                Toast.hide();
+                localStorage.setItem('token', res.data.token);
+                this.props.history.push('./index');
+            }
+        },err=>{
+            
+        })
     }
     render(){
         return(
@@ -124,7 +144,7 @@ class Login extends React.Component{
                         <div className="list">
                             <div className="inputValue">
                                 <Input onChange={this.handleCodeChange} value={this.state.code} placeholder='验证码'></Input>
-                                <span className="getCode" onClick={this.getCode.bind(this)}>{this.state.codeInfo}</span>
+                                <span className="getCode" onClick={this.getCode}>{this.state.codeInfo}</span>
                             </div>
                             <div className="tips">{this.state.codeTips}</div>
                         </div>
@@ -135,7 +155,7 @@ class Login extends React.Component{
                     <i className={`iconfont left ${ this.state.isChecked ?"active":"uActive"}`} onClick={()=>{this.setState({isChecked:!this.state.isChecked})}}>&#xe613;</i>
                     <div className="right">我已阅读并同意<span>《注册协议》</span></div>
                     </div>
-                    <div className="sub">注册登录</div>
+                    <div className="sub" onClick={this.sub}>注册登录</div>
                 </div>
             </div>
         )
