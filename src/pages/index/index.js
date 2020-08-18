@@ -24,7 +24,7 @@ class Index extends React.Component{
         super(props);
         this.state = {
             isShow:false,
-            status:1,
+            status:1,//活动状态,0 活动未发布，1 活动进行中，2 活动已关闭
             indexInfo:{}
         }
         this.getIndexInfo = this.getIndexInfo.bind(this);
@@ -45,7 +45,6 @@ class Index extends React.Component{
             switch(res.code){
                 case 200:
                     this.setState({
-                        isShow:true,
                         state:1,
                         indexInfo:res.data
                     });
@@ -66,7 +65,7 @@ class Index extends React.Component{
                         indexInfo:res.data
                     });
                     break;
-                 default:
+                default:
                     this.setState({
                         state:4,
                     });
@@ -90,7 +89,7 @@ class Index extends React.Component{
                         localStorage.getItem("token")?this.getCoupon():this.props.history.push("./login");
                         break;
                     case 2:
-                        this.props.history.push("./order");
+                        this.props.history.push("./goodsDetails?goodsId="+this.state.indexInfo.id);
                         break;
                     case 4:
                         Toast.info("该优惠卷已使用",1.5,null,false);
@@ -117,8 +116,9 @@ class Index extends React.Component{
             id: localStorage.getItem('actId')
         },res=>{
             if(res.code===200){
-                Toast.success('领取成功',1,null,false);
-                this.getIndexInfo();
+                Toast.success('领取成功',1,()=>{
+                    this.getIndexInfo();
+                },false);
             }
         },err=>{
 
