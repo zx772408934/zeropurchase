@@ -5,6 +5,7 @@ import Index from '../pages/index/index'
 import GoodsDetails from '../pages/index/goodsDetails/goodsDetails'
 import Login from "../pages/index/login/login"
 import Order from "../pages/index/order/order"
+import Review from "../pages/index/review/review"
 // import {createBrowserHistory} from 'history'
 // const history = createBrowserHistory();
 
@@ -18,6 +19,7 @@ function router (props){
                 <RouteGuard path="/index" component={Index} exact={true}></RouteGuard>
                 <RouteGuard path="/goodsDetails" component={GoodsDetails} exact={true}></RouteGuard>
                 <RouteGuard path="/order" component={Order} exact={true} permissions={true}></RouteGuard>
+                <RouteGuard path="/review" component={Review} exact={true} permissions={true}></RouteGuard>
                 <RouteGuard path="/login" component={Login} exact={true}></RouteGuard>
                 <Redirect from="/*" to="/index" />
            </Switch>
