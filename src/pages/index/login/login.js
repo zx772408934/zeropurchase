@@ -28,7 +28,10 @@ class Login extends React.Component{
     }
    
     componentDidMount(){
-        console.log(this)
+        // console.log(this.props)
+    }
+    componentWillUnmount(){
+        clearInterval(this.codeInfoInterval);
     }
     //手机号受控
     handlePhoneChange(event){
@@ -68,19 +71,17 @@ class Login extends React.Component{
             code:event.target.value
         });
     }
-
     //获取验证码
     getCode(){
         if (!this.isAllowGetCode) {
             return;
         }
-        
         if(!(/^[1][3,4,5,6,7,8,9][0-9]{9}$/).test(this.state.phone)){
             this.setState({
                 phoneTips:'请输入正确的手机号'
             });
             return;
-          }
+        }
         Toast.loading( 'Loading...' , 0 , null , true );
         const bloc = (this.state.phone.substr(1, 9) - 0).toString(8) * (1 + this.state.phone.substr(7, 10) - 0) + '';
         const rloc = bloc.substr(bloc.length - 5, bloc.length);
@@ -112,22 +113,59 @@ class Login extends React.Component{
         });
        
     }
-     //注册/登录
-     sub(){
+    //注册/登录
+    sub(){
+        if(this.state.phone.length===0){
+            this.setState({
+                phoneTips:'手机号不能为空'
+            });
+            return;
+        }
+        if(this.state.code.length===0){
+            this.setState({
+                codeTips:'验证码不能为空'
+            });
+            return;
+        }
+        if(!(/^[1][3,4,5,6,7,8,9][0-9]{9}$/).test(this.state.phone)){
+            this.setState({
+                phoneTips:'请输入正确的手机号'
+            });
+            return;
+        }
+        if(!(/^[0-9]{6}$/).test(this.state.code)){
+            this.setState({
+                codeTips:'请输入正确的验证码'
+            });
+            return;
+        }
+        if(!this.state.isChecked){
+            Toast.info( '请同意服务协议' , 1.5 , null , false );
+            return;
+        }
         Toast.loading( 'Loading...' , 0 , null , true );
         $request.fetchRequest("post","userLogin",{
-            act_id: localStorage.getItem('actId'),
+            act_id:localStorage.getItem('actId'),
             phone:this.state.phone,
             code:this.state.code
         },res=>{
             if(res.code===200){
-                Toast.hide();
                 localStorage.setItem('token', res.data.token);
-                this.props.history.push('./index');
+                Toast.success( '登录成功' , 1 , ()=>{
+                    if(this.props.location.state){
+                        this.props.history.replace({pathname:this.props.location.state.from.pathname,query:{...this.props.location.state.from.query}});
+                    }
+                    else{
+                        this.props.history.replace('./index');
+                    }
+                } , false );
+                // setTimeout(()=>{
+                    
+                //   },1000);
             }
         },err=>{
-            
-        })
+
+        });
     }
     render(){
         return(

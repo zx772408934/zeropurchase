@@ -1,7 +1,7 @@
 import React from "react";
 import { Toast } from "antd-mobile";
 class Loading extends React.Component{
-    componentWillMount(){
+    componentDidMount(){
         Toast.loading("loading...",0,null,false);
     }
     render(){

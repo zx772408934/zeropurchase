@@ -14,7 +14,7 @@ function Guard (props){
 
     //鉴权
     let status = false;
-    let userInfo = Boolean(localStorage.getItem("userInfo"));
+    let userInfo = Boolean(localStorage.getItem("token"));
     if(permissions){
         if(userInfo){
             status = true;

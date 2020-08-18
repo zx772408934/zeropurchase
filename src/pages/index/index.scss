@@ -1,0 +1,149 @@
+.index{
+    width: 100%;
+    .bg{
+        width: 100%;
+        height: 11rem;
+    }
+    .main{
+        width: 100%;
+        padding: .5rem .3rem;
+        // text-align: center;
+        .title{
+            width: 2.33rem;
+            height: .4rem;
+        }
+        .content{
+            width: 100%;
+            display: flex;
+            margin-top: .23rem;
+            >div{
+                height: 1.6rem;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+            .left{
+                width: 40%;
+                background-color: #FF3264;
+                .center{
+                    display: flex;
+                    justify-content: center;
+                    align-items: baseline;
+                    font-weight: bold;
+                    color: #FFFFFF;
+                    .symbol{
+                        font-size: .38rem;
+                        margin-right: .05rem;
+                    }
+                    .num{
+                        font-size: .72rem;
+                    }
+                }
+            }
+            .right{
+                flex: 1;
+                background-color: #ee95a8;
+                .lijiqiang{
+                    width:2.76rem;
+                    height:.7rem;
+                    line-height: .7rem;
+                    background:rgba(255,50,100,1);
+                    border-radius:.35rem; 
+                    color: #FFFFFF;
+                    font-size: .32rem;
+                }
+                .tijiaoshenhe{
+                    display: flex;
+                    align-items: center;
+                    .chooseImg{
+                        width: .88rem;
+                        height: .88rem;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        font-size: .5rem;
+                        margin-right: .6rem;
+                        color: rgba(255,50,100,1);
+                        border: 1px dashed rgba(255,50,100,1);
+                    }
+                    .tijiao{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        .maxNum{
+                            color: #999999;
+                            font-size: .22rem;
+                        }
+                        .sub{
+                            width:2rem;
+                            height:.5rem;
+                            line-height: .5rem;
+                            background:rgba(255,50,100,1);
+                            border-radius:.35rem;
+                            color: #FFACC0;
+                            font-size: .28rem;
+                            margin-top: .1rem;
+                        }
+                    }
+                }
+                .shenhezhong{
+                    display: flex;
+                    align-items: center;
+                    .showImg{
+                        width: .88rem;
+                        height: .88rem;
+                        border-radius: .1rem;
+                        background-color: rgb(241,241,241);
+                        margin-right: .36rem;
+                    }
+                    .status{
+                        color: #666666;
+                        font-size: .28rem;
+                    }
+                }
+                .weitonguo{
+                    display: flex;
+                    align-items: center;
+                    .showImg{
+                        width: .88rem;
+                        height: .88rem;
+                        border-radius: .1rem;
+                        background-color: rgb(241,241,241);
+                        margin-right: .36rem;
+                    }
+                    .chongxintijiao{
+                        display: flex;
+                        flex-direction: column;
+                        align-items: center;
+                        font-size: .28rem;
+                        .fail{
+                            color: #333333;
+                        }
+                        .resub{
+                            margin-top: .05rem;
+                            color: #FF3463;
+                            text-decoration: underline;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .direction{
+        width: 100%;
+        padding: .3rem .4rem;
+        background-color: #F3F5F7;
+        .title{
+            color: #333333;
+            font-size: .36rem;
+        }
+        .content{
+            text-align: left;
+            margin-top: .2rem;
+            white-space: pre-line;
+            line-height: .47rem;
+            color: #606972;
+            font-size: .26rem;
+        }
+    }
+}

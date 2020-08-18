@@ -1,23 +1,25 @@
 import React from 'react'
-import { BrowserRouter ,Route ,Redirect ,Switch} from 'react-router-dom'
+import { HashRouter ,Route ,Redirect ,Switch} from 'react-router-dom'
 import RouteGuard from "./RouteGuard"
 import Index from '../pages/index/index'
 import Login from "../pages/index/login/login"
+import Order from "../pages/index/order/order"
 // import {createBrowserHistory} from 'history'
 // const history = createBrowserHistory();
 
 function router (props){
     //Redirect一定要放在Switch的最后一个
     return(
-        <BrowserRouter>
+        <HashRouter>
            <Switch>
                 {/* <RouteGuard path="/" component={Home} exact={true}></RouteGuard> */}
-                <Route path="/" exact render={()=>(<Redirect to="/Index"></Redirect>)}></Route>
-                <RouteGuard path="/Index" component={Index}></RouteGuard>
-                <RouteGuard path="/Login" component={Login}></RouteGuard>
-                <Redirect from="/*" to="/Index" />
+                <Route path="/" exact render={()=>(<Redirect to="/index"></Redirect>)}></Route>
+                <RouteGuard path="/index" component={Index} exact={true}></RouteGuard>
+                <RouteGuard path="/order" component={Order} exact={true} permissions={true}></RouteGuard>
+                <RouteGuard path="/login" component={Login} exact={true}></RouteGuard>
+                <Redirect from="/*" to="/index" />
            </Switch>
-        </BrowserRouter>
+        </HashRouter>
     );
 }
 export default router;
