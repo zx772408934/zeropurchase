@@ -33,13 +33,11 @@ class Index extends React.Component{
         return
             (
                 {
-                    this.state.isShow
-                    ?
-                    <div className="index">
-                        <img alt='bg' src={require(this.state.indexInfo.home_img)}></img>
-                    </div>
-                    :
-                    <Loading></Loading>
+                this.state.isShow
+                ?
+                <Loading></Loading>
+                :
+                <Loading></Loading>
                 }
             );
     }
