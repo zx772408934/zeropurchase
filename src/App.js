@@ -5,6 +5,8 @@ import Router from './router/router'
 //引入antd-mobile CSS
 import 'antd-mobile/dist/antd-mobile.css'
 
+import 'react-animated-router/animate.css'; //引入默认的动画样式定义
+
 //处理url参数
 function getRequest() {
   var url = decodeURIComponent(window.location.href);

@@ -1,7 +1,6 @@
 import React from "react"
 import $request from "../../tools/request"
 import {Toast} from "antd-mobile"
-// import Loading from "../../components/loading/loading"
 import Hidden from "../../components/hidden/hidden";
 import "./index.scss"
 
@@ -31,7 +30,18 @@ class Index extends React.Component{
         this.doReprate = this.doReprate.bind(this);
         this.getCoupon = this.getCoupon.bind(this);
         // this.judgeContent = this.judgeContent.bind(this);
+        props.cacheLifecycles.didCache(this.componentDidCache)
+        props.cacheLifecycles.didRecover(this.componentDidRecover)
     }
+    componentDidCache = () => {
+        console.log('List cached')
+    }
+    
+    componentDidRecover = () => {
+        console.log('List recovered')
+        this.getIndexInfo();
+    }
+    
     componentDidMount(){
         Toast.loading("loading...",0,null,false);
         this.getIndexInfo();

@@ -1,9 +1,10 @@
-import  React from 'react';
-import { Route , Redirect } from 'react-router-dom'
+import React from 'react';
+import { Route, Redirect, withRouter } from 'react-router-dom'
+import { CacheRoute, CacheSwitch } from "react-router-cache-route"
 
-function Guard (props){
+function RouteGuard(props) {
 
-    // console.log(props)
+    console.log(props)
 
     //初始化参数
     const path = props.path;
@@ -15,8 +16,8 @@ function Guard (props){
     //鉴权
     let status = false;
     let userInfo = Boolean(localStorage.getItem("token"));
-    if(permissions){
-        if(userInfo){
+    if (permissions) {
+        if (userInfo) {
             status = true;
         }
         else {
@@ -28,29 +29,32 @@ function Guard (props){
     }
 
     return (
-        <Route
-            path={path}
-            exact={exact}
-            strict={strict}
-            render={props => {
+        <CacheSwitch>
+            <CacheRoute
+                path={path}
+                exact={exact}
+                strict={strict}
+                render={props => {
                     return (
-                        status ? 
-                        (
-                            <Component {...props}/>
-                        ) : 
-                        (
-                            <Redirect to={{
-                                pathname: '/login',
-                                state: { from: props.location }
-                            }} />
-                        )
+                        status ?
+                            (
+                                <Component {...props} />
+                            ) :
+                            (
+                                <Redirect to={{
+                                    pathname: '/login',
+                                    state: { from: props.location }
+                                }} />
+                            )
 
                     )
                 }
-            }
-        />
+                }
+            />
+        </CacheSwitch>
+
     )
 
 
 }
-export default Guard;
+export default withRouter(RouteGuard);

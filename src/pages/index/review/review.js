@@ -15,7 +15,7 @@ class Review extends React.Component{
         console.log(files);
         console.log(type);
         console.log(index);
-        return;
+        // return;
         //处理图片
         Toast.loading('loading...',0,null,true);
         $common.dealImg(files[0].file,res=>{
@@ -44,7 +44,8 @@ class Review extends React.Component{
     render(){
         return(
             <div>
-                <ImagePicker
+                <input type="file"></input>
+                {/* <ImagePicker
                 length="6"
                 files={this.state.files}
                 onChange={this.onChange}
@@ -54,7 +55,7 @@ class Review extends React.Component{
                 disableDelete
                 >
 
-                </ImagePicker>
+                </ImagePicker> */}
             </div>
         )
     }
