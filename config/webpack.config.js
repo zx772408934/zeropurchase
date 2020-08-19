@@ -382,7 +382,16 @@ module.exports = function(webpackEnv) {
                       },
                     },
                   ],
-                  ["import", { libraryName: "antd-mobile", style: "css"}]
+                  ["import", { libraryName: "antd-mobile", style: "css"}],
+                  [
+                    "@babel/plugin-proposal-decorators",
+                    {
+                      "legacy": true
+                    }
+                  ],
+                  [
+                    "react-activation/babel"
+                  ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).
                 // It enables caching results in ./node_modules/.cache/babel-loader/

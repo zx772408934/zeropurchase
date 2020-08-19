@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Redirect, withRouter } from 'react-router-dom'
-import { CacheRoute, CacheSwitch } from "react-router-cache-route"
 
 function RouteGuard(props) {
 
@@ -29,32 +28,18 @@ function RouteGuard(props) {
     }
 
     return (
-        <CacheSwitch>
-            <CacheRoute
-                path={path}
-                exact={exact}
-                strict={strict}
-                render={props => {
-                    return (
-                        status ?
-                            (
-                                <Component {...props} />
-                            ) :
-                            (
-                                <Redirect to={{
-                                    pathname: '/login',
-                                    state: { from: props.location }
-                                }} />
-                            )
-
-                    )
-                }
-                }
-            />
-        </CacheSwitch>
+        status ?
+            (
+                <Component {...props} />
+            ) 
+            :
+            (
+                <Redirect to={{
+                    pathname: '/login',
+                    state: { from: props.location }
+                }} />
+            )
 
     )
-
-
 }
 export default withRouter(RouteGuard);
