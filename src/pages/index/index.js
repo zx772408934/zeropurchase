@@ -6,17 +6,13 @@ import { bindLifecycle } from 'react-keep-alive';
 import { withRouter } from 'react-router-dom'
 import "./index.scss"
 
-import { connect }  from "react-redux";
-
-
-
-const mapStateToProps = (state)=>{
-    return 
-}
-const VisibleTodoList = connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(Index);
+// const mapStateToProps = (state)=>{
+//     return 
+// }
+// const VisibleTodoList = connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(Index);
 
 
 function TestContent(props) {
