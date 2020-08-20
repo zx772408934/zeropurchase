@@ -3,7 +3,6 @@ import $request from "../../tools/request"
 import { Toast } from "antd-mobile"
 import Hidden from "../../components/hidden/hidden";
 import { bindLifecycle } from 'react-keep-alive';
-import { withRouter } from 'react-router-dom'
 import "./index.scss"
 
 
@@ -45,12 +44,6 @@ class Index extends React.Component {
 
     componentWillUnactivate() {
         console.log('TestClass: componentWillUnactivate')
-    }
-    componentDidActivate() {
-
-    }
-    componentWillUnactivate() {
-
     }
     //获取首页信息
     getIndexInfo() {
@@ -216,4 +209,4 @@ class Index extends React.Component {
         );
     }
 }
-export default withRouter(Index);
+export default Index;
