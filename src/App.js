@@ -1,7 +1,7 @@
 import React from 'react';
 import "./App.css"
 //引入路由配置
-import ZxRouter from './router/router'
+import ZXRouter from './router/router'
 //引入antd-mobile CSS
 import 'antd-mobile/dist/antd-mobile.css'
 
@@ -47,7 +47,7 @@ class App extends React.Component{
   render(){
     return(
       <div className='App'>
-          <ZxRouter></ZxRouter>
+          <ZXRouter></ZXRouter>
       </div>
     );
   }

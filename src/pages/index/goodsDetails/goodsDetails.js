@@ -5,25 +5,55 @@ import $request from "../../../tools/request";
 import Qs from "qs";
 import area from "../../../tools/location.json"
 import "./goodsDetails.scss";
-
-function Common (props){
-    let elements = 
-    <div className="common">
-        <div className="title">
-            {props.title}
-        </div>
-        {
-            props.content
-            ?
-            <div className="content">
-                {props.content}
+import { bindLifecycle } from 'react-keep-alive';
+@bindLifecycle
+class Common extends React.Component{
+    constructor(props){
+        super(props);
+    }
+    componentDidActivate() {
+        console.log(11111111)
+    }
+    componentWillUnactivate() {
+        console.log(222222222)
+    }
+    render(){
+        return(
+            <div className="common">
+                <div className="title">
+                    {this.props.title}
+                </div>
+                {
+                    this.props.content
+                    ?
+                    <div className="content">
+                        {this.props.content}
+                    </div>
+                    :
+                    this.props.children
+                }
             </div>
-            :
-            props.children
-        }
-    </div>
-    return elements;
+        )
+    }
+    // let elements = 
+    // <div className="common">
+    //     <div className="title">
+    //         {props.title}
+    //     </div>
+    //     {
+    //         props.content
+    //         ?
+    //         <div className="content">
+    //             {props.content}
+    //         </div>
+    //         :
+    //         props.children
+    //     }
+    // </div>
+    // return elements;
+    
 }
+@bindLifecycle
 class GoodsDetails extends React.Component{
     constructor(props){
         super(props);
@@ -44,6 +74,12 @@ class GoodsDetails extends React.Component{
         this.getGoodsDetialsInfo = this.getGoodsDetialsInfo.bind(this);
         this.judgePrice = this.judgePrice.bind(this);
         this.goBuy = this.goBuy.bind(this);
+    }
+    componentDidActivate() {
+        console.log(11111111)
+    }
+    componentWillUnactivate() {
+        console.log(222222222)
     }
     componentDidMount(){
         Toast.loading("loading...",0,null,false);
@@ -223,7 +259,7 @@ class GoodsDetails extends React.Component{
                 <div onClick={this.goBuy}>立即购买</div>
             </div>
             :
-            null
+            <div></div>
             // <Hidden visible={this.state.isShow}>
             //     <div className="goodsDetails">
             //         <div className="swiper">

@@ -1,15 +1,14 @@
 import React from 'react';
-import { Route, Redirect, withRouter } from 'react-router-dom'
+import { Redirect, withRouter } from 'react-router-dom'
+import { KeepAlive } from 'react-keep-alive';
 
 function RouteGuard(props) {
 
-    console.log(props)
+    // console.log(props)
 
     //初始化参数
-    const path = props.path;
     const Component = props.component;
-    const exact = props.exact || false;
-    const strict = props.strict || false;
+    const name = props.name || null;
     const permissions = props.permissions || false;
 
     //鉴权
@@ -30,8 +29,10 @@ function RouteGuard(props) {
     return (
         status ?
             (
-                <Component {...props} />
-            ) 
+                <KeepAlive name={name}>
+                    <Component {...props} />
+                </KeepAlive>
+            )
             :
             (
                 <Redirect to={{
@@ -39,7 +40,6 @@ function RouteGuard(props) {
                     state: { from: props.location }
                 }} />
             )
-
     )
 }
 export default withRouter(RouteGuard);

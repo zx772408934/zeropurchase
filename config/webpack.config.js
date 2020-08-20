@@ -388,9 +388,6 @@ module.exports = function(webpackEnv) {
                     {
                       "legacy": true
                     }
-                  ],
-                  [
-                    "react-activation/babel"
                   ]
                 ],
                 // This is a feature of `babel-loader` for webpack (not Babel itself).

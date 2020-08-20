@@ -3,7 +3,20 @@ import $request from "../../tools/request"
 import { Toast } from "antd-mobile"
 import Hidden from "../../components/hidden/hidden";
 import { bindLifecycle } from 'react-keep-alive';
+import { withRouter } from 'react-router-dom'
 import "./index.scss"
+
+import { connect }  from "react-redux";
+
+
+
+const mapStateToProps = (state)=>{
+    return 
+}
+const VisibleTodoList = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Index);
 
 
 function TestContent(props) {
@@ -31,20 +44,18 @@ class Index extends React.Component {
         this.doReprate = this.doReprate.bind(this);
         this.getCoupon = this.getCoupon.bind(this);
         // this.judgeContent = this.judgeContent.bind(this);
-        // props.cacheLifecycles.didCache(this.componentDidCache)
-        // props.cacheLifecycles.didRecover(this.componentDidRecover)
     }
     componentDidMount() {
         Toast.loading("loading...", 0, null, false);
-        this.getIndexInfo();
     }
     componentDidActivate() {
+        this.getIndexInfo();
         console.log('TestClass: componentDidActivate')
     }
-
     componentWillUnactivate() {
         console.log('TestClass: componentWillUnactivate')
     }
+   
     //获取首页信息
     getIndexInfo() {
         $request.fetchRequest("post", "getIndexInfo", {
@@ -209,4 +220,4 @@ class Index extends React.Component {
         );
     }
 }
-export default Index;
+export default withRouter(Index);
