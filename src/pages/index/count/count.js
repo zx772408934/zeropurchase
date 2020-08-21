@@ -1,12 +1,27 @@
 import React from "react";
 
+import { connect } from 'react-redux'
+
+
 function Test(props){
     console.log(props);
     return (
         <div>11111</div>
     )
 }
+function mapStateToProps(state) {
+    return {
+      value: state.count
+    }
+  }
+  function mapDispatchToProps(dispatch) {
+    return {
+      onIncreaseClick: () => dispatch()
+    }
+  }
+  
 
+  // console.log(Container)
 
 class Counter extends React.Component {
     // constructor(props){
@@ -24,7 +39,7 @@ class Counter extends React.Component {
         )
     }
 }
-
+connect(mapStateToProps, mapDispatchToProps)(Counter)
 
 
 

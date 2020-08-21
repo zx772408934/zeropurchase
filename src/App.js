@@ -7,6 +7,9 @@ import 'antd-mobile/dist/antd-mobile.css'
 
 import 'react-animated-router/animate.css'; //引入默认的动画样式定义
 
+import { createStore, combineReducers } from 'redux'
+import { Provider, connect } from 'react-redux'
+
 //处理url参数
 function getRequest() {
   var url = decodeURIComponent(window.location.href);
@@ -21,8 +24,23 @@ function getRequest() {
   return theRequest;
 }
 
-class App extends React.Component{
-  componentDidMount(){
+const counter = (state = { count: 0 }, action) => {
+  // console.log(action)
+  const count = state.count
+  switch (action.type) {
+    case 'increase':
+      return { count: count + 1 }
+    default:
+      return state
+  }
+}
+
+// const rootReducers = combineReducers({counter});
+const store = createStore(counter);
+
+
+class App extends React.Component {
+  componentDidMount() {
     //判断是否为微信环境
     //判断微信环境 1表示微信环境2表示非微信环境
     let ua = navigator.userAgent.toLowerCase();
@@ -36,19 +54,21 @@ class App extends React.Component{
     //   return;
     // }
     ua.match(/MicroMessenger\/[0-9]/i) ? localStorage.setItem('isWechat', 1) : localStorage.setItem('isWechat', 0);
-     //自适应单位rem
-     document.getElementsByTagName('html')[0].style.fontSize = document.getElementsByTagName('html')[0].offsetWidth /
-     7.50 + 'px';
+    //自适应单位rem
+    document.getElementsByTagName('html')[0].style.fontSize = document.getElementsByTagName('html')[0].offsetWidth /
+      7.50 + 'px';
 
-     if (getRequest().actId) {
+    if (getRequest().actId) {
       localStorage.setItem('actId', getRequest().actId);
     }
   }
-  render(){
-    return(
-      <div className='App'>
+  render() {
+    return (
+      // <div className='App'>
+        <Provider store={store}>
           <ZXRouter></ZXRouter>
-      </div>
+        </Provider>
+      // </div>
     );
   }
 }
