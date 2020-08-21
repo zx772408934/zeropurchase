@@ -7,8 +7,9 @@ import 'antd-mobile/dist/antd-mobile.css'
 
 import 'react-animated-router/animate.css'; //引入默认的动画样式定义
 
-import { createStore, combineReducers } from 'redux'
-import { Provider, connect } from 'react-redux'
+import store from "./store/store"
+
+import { Provider } from 'react-redux'
 
 //处理url参数
 function getRequest() {
@@ -24,19 +25,19 @@ function getRequest() {
   return theRequest;
 }
 
-const counter = (state = { count: 0 }, action) => {
-  // console.log(action)
-  const count = state.count
-  switch (action.type) {
-    case 'increase':
-      return { count: count + 1 }
-    default:
-      return state
-  }
-}
+// const counter = (state = { count: 0 }, action) => {
+//   // console.log(action)
+//   const count = state.count
+//   switch (action.type) {
+//     case 'increase':
+//       return { count: count + 1 }
+//     default:
+//       return state
+//   }
+// }
 
 // const rootReducers = combineReducers({counter});
-const store = createStore(counter);
+// const store = createStore(counter);
 
 
 class App extends React.Component {

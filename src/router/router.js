@@ -19,10 +19,10 @@ function ZXRouter(props) {
     //Provider必须放在Router的里面，KeepAlive必须放在Provider里面，并且需要一个唯一的name值
     return (
         <HashRouter>
-            {/* <Provider> */}
+            <Provider>
                 <Switch>
                     <Route path="/" exact render={() => (<Redirect to="/counter"></Redirect>)}></Route>
-                    {/* <Route path="/index" exact>
+                    <Route path="/index" exact>
                         <RouteGuard component={Index} name="index"></RouteGuard>
                     </Route>
                     <Route path="/login" exact>
@@ -30,17 +30,17 @@ function ZXRouter(props) {
                     </Route>
                     <Route path="/goodsDetails" exact>
                         <RouteGuard component={GoodsDetails} permissions={true} name="goodsDetails"></RouteGuard>
-                    </Route> */}
+                    </Route>
 
-                    {/* <Route path="/counter" exact>
+                    <Route path="/counter" exact>
                         <RouteGuard component={Counter} name="counter"></RouteGuard>
-                    </Route> */}
+                    </Route>
 
-                    <Route path="/counter" exact component={Counter}></Route>
+                    {/* <Route path="/counter" exact component={Counter}></Route> */}
 
                     <Redirect from="/*" to="/index" />
                 </Switch>
-            {/* </Provider> */}
+            </Provider>
         </HashRouter>
     );
 }

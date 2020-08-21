@@ -4,16 +4,20 @@ import { Toast } from "antd-mobile"
 import Hidden from "../../components/hidden/hidden";
 import { bindLifecycle } from 'react-keep-alive';
 import { withRouter } from 'react-router-dom'
+import { connect } from 'react-redux'
 import "./index.scss"
 
-// const mapStateToProps = (state)=>{
-//     return 
-// }
-// const VisibleTodoList = connect(
-//     mapStateToProps,
-//     mapDispatchToProps
-// )(Index);
 
+function mapStateToProps(state) {
+    return {
+      value: state.count
+    }
+  }
+function mapDispatchToProps(dispatch) {
+    return {
+      onReduceClick: () => dispatch({ type: 'reduce' })
+    }
+  }
 
 function TestContent(props) {
     if (props.indexInfo.type === 1) {
@@ -154,6 +158,7 @@ class Index extends React.Component {
     //     }
     // } 
     render() {
+        //  console.log(this.props)
         return (
             // this.state.isShow
             // ?
@@ -172,7 +177,7 @@ class Index extends React.Component {
                         <div className="right">
                             <Hidden visible={Boolean(this.state.indexInfo.type === 1 || this.state.indexInfo.type === 2 || this.state.indexInfo.type === 4)}>
                                 <div className="lijiqiang">
-                                    <TestContent indexInfo={this.state.indexInfo} onClick={this.doReprate}></TestContent>
+                                    <TestContent indexInfo={this.state.indexInfo} onClick={this.props.onReduceClick}></TestContent>
                                 </div>
                             </Hidden>
                             <Hidden visible={Boolean(this.state.indexInfo.type === 5 || this.state.indexInfo.is_verify === 1)}>
@@ -216,4 +221,10 @@ class Index extends React.Component {
         );
     }
 }
-export default withRouter(Index);
+// export default withRouter(Index);
+
+export default connect(
+
+   mapStateToProps , mapDispatchToProps, null, { forwardRef: true }
+    
+    )(Index);
