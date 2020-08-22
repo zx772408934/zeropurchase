@@ -26,13 +26,13 @@ function mapDispatchToProps(dispatch) {
 @bindLifecycle
 // @connect(mapStateToProps, mapDispatchToProps)
 class Counter extends React.Component {
-  
-componentDidActivate() {
-  console.log('TestClass: componentDidActivate')
-}
-componentWillUnactivate() {
-  console.log('TestClass: componentWillUnactivate')
-}
+
+  componentDidActivate() {
+    console.log('TestClass: componentDidActivate')
+  }
+  componentWillUnactivate() {
+    console.log('TestClass: componentWillUnactivate')
+  }
   render() {
     // console.log(this.props)
     const { value, onIncreaseClick } = this.props
@@ -49,6 +49,6 @@ componentWillUnactivate() {
 export default connect(
 
   mapStateToProps, mapDispatchToProps, null, { forwardRef: true }
-  
-  )(Counter);
+
+)(Counter);
 // export default Counter;
