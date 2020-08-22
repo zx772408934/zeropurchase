@@ -166,7 +166,7 @@ class Index extends React.Component {
             <div className="index">
                 <img alt='bg' src={this.state.indexInfo.home_img} className="bg"></img>
                 <div className="main">
-                    <img alt="lqyhj" src={require("../../static/images/index/lqyhj.png")} style={{ margin: 'auto 0' }} className="title"></img>
+                    <img alt="lqyhj" src={require("../../static/images/index/lqyhj.png")} style={{ display: 'block',margin:"0 auto" }} className="title"></img>
                     <div className="content">
                         <div className="left">
                             <div className="center">

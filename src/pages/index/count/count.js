@@ -4,6 +4,8 @@ import { connect } from 'react-redux'
 
 import { bindLifecycle } from 'react-keep-alive';
 
+import store from "../../../store/store"
+
 function Test(props) {
   console.log(props);
   return (
@@ -28,27 +30,32 @@ function mapDispatchToProps(dispatch) {
 class Counter extends React.Component {
 
   componentDidActivate() {
+   
+    
     console.log('TestClass: componentDidActivate')
   }
   componentWillUnactivate() {
     console.log('TestClass: componentWillUnactivate')
   }
+  testdis(){
+    store.dispatch({ type: 'increase' });
+    console.log(store.getState().count)
+  }
   render() {
-    // console.log(this.props)
     const { value, onIncreaseClick } = this.props
     return (
       <div>
         <span>{value}</span>
-        <button onClick={onIncreaseClick}>Increase</button>
+        <button onClick={this.testdis}>Increase</button>
       </div>
     )
   }
 }
 
+export default Counter;
+// export default connect(
 
-export default connect(
+//   mapStateToProps, mapDispatchToProps, null, { forwardRef: true }
 
-  mapStateToProps, mapDispatchToProps, null, { forwardRef: true }
-
-)(Counter);
+// )(Counter);
 // export default Counter;

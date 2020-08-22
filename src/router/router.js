@@ -7,6 +7,7 @@ import Login from "../pages/index/login/login"
 import Order from "../pages/index/order/order"
 import Review from "../pages/index/review/review"
 import Counter from "../pages/index/count/count"
+import HookTest from "../pages/index/hookTest/hookTest"
 //路由动画
 // import AnimatedRouter from 'react-animated-router';
 import { Provider } from 'react-keep-alive';
@@ -34,6 +35,9 @@ function ZXRouter(props) {
 
                     <Route path="/counter" exact>
                         <RouteGuard component={Counter} name="counter"></RouteGuard>
+                    </Route>
+                    <Route path="/hookTest" exact>
+                        <RouteGuard component={HookTest} name="hookTest"></RouteGuard>
                     </Route>
 
                     {/* <Route path="/counter" exact component={Counter}></Route> */}
